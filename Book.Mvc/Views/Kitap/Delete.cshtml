@@ -1,0 +1,71 @@
+﻿@model Book.Mvc.Entity.Kitap
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+<div class="container pb-5">
+
+    <h2><u>@Model.Name</u> Sil</h2>
+    
+    <h6>Silmek İstediğinize Emin Misiniz?</h6>
+    <div>
+        <br />
+       <dl class="dl-horizontal">
+           
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Yazar)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Yazar)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Puan)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Puan)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Tavsiye)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tavsiye)
+            </dd>
+
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="myButtonDel"/> 
+                @Html.ActionLink("Kitaplara Dön ", "Index",null,new { @class="btn btn-success" })
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@using Book.Mvc.Models;
+@model ListBooksModel
+@{
+    ViewBag.Title = "ShowReadingList";
+}
+
+<div class="container pb-5">
+    <h2>Listem</h2>
+    <table class="table table-bordered table-striped ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => Model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Puan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yazar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EklenmeTarihi)
+            </th>
+        </tr>
+
+        @foreach (var item in Model.readinglist)
+        {
+        <tr>
+            <td>
+                <img src="~/Upload/@item.kitap.Image" alt="Alternate Text" width="80" />
+            </td>
+            <td>
+                <a href="/Home/Details/@item.KitapId">@item.kitap.Name</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kitap.Puan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kitap.Yazar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionTime)
+            </td>
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.kitap.Id }, new { @class = "myButtonDetay" })
+
+
+                @using (Html.BeginForm("DeleteBook", "Home", FormMethod.Get, new { id = item.Id }))
+                {
+                    @Html.AntiForgeryToken()
+                    <button type="submit" name="id" id="@item.Id" value="@item.Id" class="myButtonDel">Delete</button>
+                }
+            </td>
+
+        </tr>
+
+        }
+    </table>
+    </div>

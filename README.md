@@ -1,2 +1,0 @@
-# Kitapsite
-kitap site dosyalar

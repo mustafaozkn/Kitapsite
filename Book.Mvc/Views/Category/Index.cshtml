@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Book.Mvc.Entity.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+<div class="container pb-5">
+    <h2>Katgoriler</h2>
+    <br />
+    <p>
+        @Html.ActionLink("Kategori Ekle ", "Create", null, new { @class = "myButton" })
+    </p>
+    <br /> 
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th> İşlemler</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id },new {@class="myButtonEdit" }) 
+                    
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "myButtonDel" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

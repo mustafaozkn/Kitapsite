@@ -1,0 +1,41 @@
+﻿
+<ul class="navbar-nav my-2 my-lg-0">
+
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("ShowReadingList", "Home", FormMethod.Get, new { username = User.Identity.Name }))
+        {
+            <div class="dropdown">
+                <button class="dropbtn">@User.Identity.Name</button>
+                <div class="dropdown-content">
+                    <input type="hidden" name="username" value="@User.Identity.Name" />
+                    <input type="submit" value="Listem" name="@User.Identity.Name" id="@User.Identity.Name" formaction="/Home/ShowReadingList" class="dropbtn btn-default" style="width:190px;"/>
+
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+        }
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account/Logout">Çıkış Yap <span class="sr-only">(current)</span></a>
+        </li>
+
+    }
+    else
+    {
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account/Login">Giriş Yap</a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account/Register">Kayıt Ol</a>
+        </li>
+
+    }
+
+
+
+
+
+
+</ul>

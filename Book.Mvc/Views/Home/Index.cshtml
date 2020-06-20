@@ -1,0 +1,17 @@
+﻿@using Book.Mvc.Models
+@model IEnumerable<BookListModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+       <div class="container pb-5">
+
+            @Html.Partial("_BookList", Model)
+        </div>
+
+
+
+
+
+

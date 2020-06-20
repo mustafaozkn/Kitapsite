@@ -1,0 +1,25 @@
+﻿@model Book.Mvc.Models.DetailModel
+
+
+
+
+@using (Html.BeginForm("ReadingList", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    <div class="row">
+        <div class="col-md-12">
+            <input type="hidden" name="KitapId" value="@Model.kitaplar.Id" />
+            <input type="hidden" name="UserName" value="@User.Identity.Name" />
+            <input type="hidden" name="AdditionTime" value="@DateTime.Now" />
+
+            <div class="pt-3">
+                <form action="" method="post" class="pt-3">
+                    <input type="submit" value="Listeme Ekle" class="myButtonEdit" />
+                   
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+}

@@ -1,0 +1,26 @@
+﻿@model Book.Mvc.Models.DetailModel
+
+
+
+@using (Html.BeginForm("YorumYap", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+<div class="row">
+    <div class="col-md-12 yorumyap pt-4 forarea description-box ">
+        <h4 class="pb-3 ">Yorum Yap</h4>
+
+        @Html.TextAreaFor(i => i.Yorum,new {@class="form-control pb-5"})
+        <input type="hidden" name="KitapId" value="@Model.kitaplar.Id" />
+        <input type="hidden" name="UserName" value="@User.Identity.Name" />
+        <input type="hidden" name="CommentTime" value="@DateTime.Now"/>
+        <input type="hidden" name="Role" value="user" />
+        
+        <div class="pt-3">
+            <form action="" method="post" class="pt-3">
+                <input type="submit" value="Yorum Yap" class="myButtonEdit" />
+            </form>
+        </div>
+    </div>
+</div>
+}

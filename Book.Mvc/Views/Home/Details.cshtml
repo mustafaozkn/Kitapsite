@@ -1,0 +1,143 @@
+﻿@using Book.Mvc.Models;
+@model DetailModel
+@{
+    /**/
+
+    ViewBag.Title = "Details";
+}
+<div id="booksdetails" class="container pb-5">
+    <div class="col-md-6 pb-3">
+        <h1 style="text-align:center">@Model.kitaplar.Name</h1>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="row">
+
+        <div class="col-md-6 description-box" align="center">
+            <img src="~/Upload/@Model.kitaplar.Image" class="img-fluid rounded" style="padding:10px;">
+        </div>
+        <div class="col-md-6">
+
+
+            <div class="row">
+                <div class="col-md-12 description-box-detay-top">
+
+                    <span class="product-number">Yazar: <strong>@Model.kitaplar.Yazar</strong></span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12  description-box-detay-bot">
+                    <span class="product-number">Sayfa Sayısı:<strong>@Model.kitaplar.SayfaSayisi</strong></span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 description-box-detay-bot">
+
+                    <span class="product-number">Kitap Puanı: <strong style="color:red;">@Model.kitaplar.Puan</strong></span>
+
+                </div>
+            </div>
+            <br />
+            <br />
+
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <div>
+                        @if (Request.IsAuthenticated)
+                        {
+                            @Html.Partial("ReadingList", Model)
+                        }
+                        else
+                        {
+                            <p>Giriş yaparak listene kitap ekleyebilirsin</p>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <br />
+            
+            <div class="row mt-2">
+                <div class="col-md-4" style="display:inline-block">
+                    <a class="myButtonDetay" href="#yorumyap1">Yorum Yap</a>
+                </div>
+                <div class="col-md-4" style="display:inline-block">
+                    <a class="myButtonEdit" href="#yorumlar">Yorumlar(@Model.comments.Count())</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12 pt-4 description-box">
+            <p style="text-align:center;padding:40px;"> <strong>@Model.kitaplar.Name</strong> <br /> @Model.kitaplar.Description <br /> <strong>Yazar: @Model.kitaplar.Yazar</strong> <br /> Sayfa Sayısı: @Model.kitaplar.SayfaSayisi</p>
+        </div>
+    </div>
+    <div class="yorum-p row mt-3">
+        <div id="yorumlar" class="col-md-12">
+            <p>Yorumlar</p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12 description-box">
+            <div class="container">
+
+                @foreach (var item in Model.comments)
+                {
+                    <div class="dialogbox">
+                        <div class="body">
+                            <span class="tip tip-up"></span>
+                            <div class="message">
+
+                                <p style="display:block;padding-left:22px;"><strong>@item.UserName </strong> | <span style="text-align:center;">@item.CommentTime</span> </p>
+                                <span>@item.Yorum</span>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="yorum-p row mt-3">
+        <div id="yazaryorum" class="col-md-12">
+            <p>Yazar Yorumları</p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12 description-box">
+            <div class="container">
+
+                @foreach (var item in Model.YazarComment)
+                {
+                    <div class="dialogbox">
+                        <div class="body">
+                            <span class="tip tip-up"></span>
+                            <div class="message">
+
+                                <p style="display:block;padding-left:22px;"><strong>@item.UserName </strong> | <span style="text-align:center;">@item.CommentTime</span> </p>
+                                <span>@item.Yorum</span>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div id="yorumyap1" class="pt-3">
+        @if (Request.IsAuthenticated)
+        {
+            @Html.Partial("YorumYap", Model)
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-12 yorumyap pt-4 forarea description-box ">
+                    <h3>Yorum Yapmak İçin Giriş Yapmanız Gerek</h3>
+                    <a href="/Account/Login" class="myButton"> Giriş Yap</a>
+                </div>
+            </div>}
+    </div>
+</div>
+       

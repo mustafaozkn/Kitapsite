@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Book.Mvc.Entity.Category>
+
+
+
+<div class="title-bg">
+    <div class="title">Kategoriler</div>
+</div>
+
+<div class="categorybox">
+    <ul>
+        <li><a href="/Home/List"> Tüm Kitaplar</a></li>
+        @foreach (var item in Model)
+        {
+            <li><a href="/Home/List/@item.Id">@item.Name</a></li>
+        }
+
+    </ul>
+</div>
+

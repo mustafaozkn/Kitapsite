@@ -1,0 +1,22 @@
+﻿@using Book.Mvc.Entity
+@model IEnumerable<Kitap>
+
+<div class="title-bg">
+    <div class="title">En Yüksek Puanlılar</div>
+</div>
+<div class="best-seller">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li class="clearfix">
+                <a href="/Home/Details/@item.Id"><img src="~/Upload/@item.Image" alt="" class="img-responsive mini"></a>
+                <div class="mini-meta">
+                    <a href="#" class="smalltitle2">@item.Name</a>
+                    <p class="smallprice2">@item.Puan</p>
+                </div>
+            </li>
+        }
+
+
+    </ul>
+</div>

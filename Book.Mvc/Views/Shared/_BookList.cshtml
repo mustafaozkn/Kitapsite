@@ -1,0 +1,26 @@
+﻿@using Book.Mvc.Models;
+@model IEnumerable<BookListModel>
+<div class="row">
+
+    @foreach (var kitap in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+
+                <img class="card-img-top" src="~/Upload/@kitap.Image" alt="@kitap.Name" style="max-width:100%;height: 350px; object-fit:contain;"  > 
+                <h2 style="position:absolute; font-size:18px;font-weight:800; background-color:#ffffff;text-align:">@kitap.Puan</h2>                 @*holder.js/100px160/*@
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="/Home/Details/@kitap.Id">@kitap.Name </a>
+                    </h4>
+                    <p class="card-text pt-2 description">@kitap.Description</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted k-puan">@kitap.Yazar</small>
+                    <a href="/Home/Details/@kitap.Id" class="btn btn-default btn-sm float-right">Detay</a>
+                </div>
+                
+            </div>
+        </div>
+    }
+</div>
