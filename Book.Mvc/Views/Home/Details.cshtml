@@ -5,7 +5,7 @@
 
     ViewBag.Title = "Details";
 }
-<div id="booksdetails" class="container pb-5">
+<div id="booksdetails" class="container pb-5" onload="GetComment(@Model.kitaplar.Id)">
     <div class="col-md-6 pb-3">
         <h1 style="text-align:center">@Model.kitaplar.Name</h1>
     </div>
@@ -80,8 +80,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-md-12 description-box">
-            <div class="container">
-
+            <div class="container" id="getComment">
                 @foreach (var item in Model.comments)
                 {
                     <div class="dialogbox">
@@ -96,6 +95,8 @@
                         </div>
                     </div>
                 }
+
+                @Html.Partial("YorumGetir")
             </div>
         </div>
     </div>
@@ -118,10 +119,13 @@
                                 <p style="display:block;padding-left:22px;"><strong>@item.UserName </strong> | <span style="text-align:center;">@item.CommentTime</span> </p>
                                 <span>@item.Yorum</span>
 
+
                             </div>
                         </div>
                     </div>
                 }
+
+                @Html.Partial("YorumGetir")
             </div>
         </div>
     </div>

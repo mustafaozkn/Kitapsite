@@ -230,6 +230,7 @@
     <Content Include="Views\Home\TekrarDeneme.cshtml" />
     <Content Include="Views\Home\Categories.cshtml" />
     <Content Include="Views\Home\DescendingList.cshtml" />
+    <Content Include="Views\Home\YorumGetir.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

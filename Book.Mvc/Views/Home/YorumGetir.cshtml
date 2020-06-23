@@ -1,0 +1,53 @@
+﻿
+<div class="dialogbox">
+    <div class="body">
+        <span class="tip tip-up"></span>
+        <div class="message" id="getComments">
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function GetComment(id) {
+
+        $.ajax({
+            type: "GET",
+            url: "/Home/YorumGetir",
+            data: { id: id },
+            success: function (data) {
+                $("#getComment").html('');
+                $.each(data, function (i, item) {
+                    $("#getComment").append(
+
+                        `
+                    <div class="dialogbox">
+                        <div class="body">
+                            <span class="tip tip-up"></span>
+                            <div class="message">
+
+                                <p style="display:block;padding-left:22px;"><strong>${item.UserName} </strong> | <span style="text-align:center;">${item.CommentTime}</span> </p>
+                                <span>${item.Yorum}</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+`
+                    );
+
+
+                });
+            }
+
+
+
+        });
+    }
+
+
+
+
+</script>

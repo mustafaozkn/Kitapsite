@@ -52,26 +52,7 @@ namespace Book.Mvc.Controllers
             return View(books.ToList());
         }
         
-        public ActionResult YorumYap()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult YorumYap(Comment model)
-        {
-
-            var comment = new Comment();
-            comment.KitapId = model.KitapId;
-            comment.UserName = model.UserName;
-            comment.Yorum = model.Yorum;
-            comment.Role = model.Role;
-            
-            comment.CommentTime = DateTime.Now;
-            _db.Comments.Add(model);
-            _db.SaveChanges();
-
-            return RedirectToAction("Index");
-      }
+        
         public ActionResult ReadingList()
         {
             return View();
@@ -176,7 +157,34 @@ namespace Book.Mvc.Controllers
             return View(xxx);
 
         }
-        
+
+       
+        public JsonResult YorumYap(Comment model)
+        {
+
+            var comment = new Comment();
+            comment.KitapId = model.KitapId;
+            comment.UserName = model.UserName;
+            comment.Yorum = model.Yorum;
+            comment.Role = model.Role;
+
+            comment.CommentTime = DateTime.Now;
+            _db.Comments.Add(model);
+            _db.SaveChanges();
+            
+
+            return Json(comment.KitapId,JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult YorumGetir(int id)
+        {
+            var list = _db.Comments.Where(i => i.KitapId == id).ToList().Where(c => !String.IsNullOrEmpty(c.Yorum)).Select(c => new {
+                c.Yorum,
+                c.UserName,
+                CommentTime = c.CommentTime.ToString()
+            });
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 
 
